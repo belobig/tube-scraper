@@ -7,7 +7,7 @@ Please check out the deployed version in Heroku [here](http://paper-scraper.hero
 ## Functionality
 On the backend, the app uses `express` to serve routes and `mongoose` to interact with a `MongoDB` database.
 
-On the frontend, the app uses `handlebars` for templating each article and `materialize` as a styling framework. The app also uses `jQuery` and `AJAX` to help with making post requests.
+On the frontend, the app uses `handlebars` for templating each video and `materialize` as a styling framework. The app also uses `jQuery` and `AJAX` to help with making post requests.
 
 And for webscraping, the app uses the `request` and `cheerio` node packages. All webscrapping code can be found in the `controllers.js` file.
 
@@ -23,11 +23,11 @@ If you wish to clone the app down to your local machine...
 
 
 ## Screenshots
-#### The `/articles` route renders all the news articles
-![All Articles](/screenshots/content.png)
+#### The `/videos` route renders all the news videos
+![All Videos](/screenshots/content.png)
 
 #### Click on the globe icon to view the content.
-![Article Content](/screenshots/article.png)
+![Video Content](/screenshots/video.png)
 
 #### Click the Chat Bubble icon to add a comment via the `/add/comment/:id` post route
 ![Add Comment](/screenshots/add-comment.png)
@@ -39,4 +39,4 @@ If you wish to clone the app down to your local machine...
 ![Delete Comment](/screenshots/delete-comment.png)
 
 #### Note that the web scraping occurs on the `/scrape` route.
-#### On visiting the index route, `/`, express redirects to `/scrape` and then `/articles` routes
+#### On visiting the index route, `/`, express redirects to `/scrape` and then `/videos` routes

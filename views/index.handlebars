@@ -1,7 +1,7 @@
-{{!-- Templating for all Articles --}} {{!-- Iterate Over all the articles --}} {{#each articles}}
+{{!-- Templating for all Videos --}} {{!-- Iterate Over all the videos --}} {{#each videos}}
 <ul class="collapsible" data-collapsible="accordion">
 
-	<!-- Article Drop Down -->
+	<!-- Video Drop Down -->
 	<li>
 		<div style="background-color: white;" class="collapsible-header blue lighten-2">
 			<i class="material-icons">details</i>
@@ -71,7 +71,7 @@
 			<i class="material-icons">comment</i>View Comments</div>
 		<div class="collapsible-body" style="background-color: white;">
 
-			{{!-- Check if the article has comments --}} {{#if comments}} {{!-- Article has comments so iterate over them --}}
+			{{!-- Check if the video has comments --}} {{#if comments}} {{!-- Video has comments so iterate over them --}}
 			<ul class="collection">
 				{{#each comments}}
 

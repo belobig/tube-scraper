@@ -58,13 +58,13 @@ db.once('open', function() {
   console.log('Mongoose connection successful.');
 });
 
-// Import the Comment and Article models
+// Import the Comment and Video models
 var Comment = require('./models/Comment.js');
-var Article = require('./models/Article.js');
+var Video = require('./models/Video.js');
 // ---------------------------------------------------------------------------------------------------------------
 
 // DROP DATABASE (FOR MY PERSONAL REFERENCE ONLY - YOU CAN IGNORE)
-// Article.remove({}, function(err) { 
+// Video.remove({}, function(err) { 
 //    console.log('collection removed') 
 // });
 

@@ -5,9 +5,9 @@ var path = require('path');
 var request = require('request'); // for web-scraping
 var cheerio = require('cheerio'); // for web-scraping
 
-// Import the Comment and Article models
+// Import the Comment and Video models
 var Comment = require('../models/Comment.js');
-var Article = require('../models/Article.js');
+var Video = require('../models/Video.js');
 
 // Index Page Render (first visit to the site)
 router.get('/', function (req, res) {
@@ -18,15 +18,15 @@ router.get('/', function (req, res) {
 });
 
 
-// Articles Page Render
-router.get('/articles', function (req, res) {
+// Videos Page Render
+router.get('/videos', function (req, res) {
 
-	// Query MongoDB for all article entries (sort newest to top, assuming Ids increment)
-	Article.find().sort({
+	// Query MongoDB for all video entries (sort newest to top, assuming Ids increment)
+	Video.find().sort({
 			_id: -1
 		})
 
-		// But also populate all of the comments associated with the articles.
+		// But also populate all of the comments associated with the videos.
 		.populate('comments')
 
 		// Then, send them to the handlebars template to be rendered
@@ -38,7 +38,7 @@ router.get('/articles', function (req, res) {
 			// or send the doc to the browser as a json object
 			else {
 				var hbsObject = {
-					articles: doc
+					videos: doc
 				}
 				res.render('index', hbsObject);
 				// res.json(hbsObject)
@@ -60,16 +60,16 @@ router.get('/scrape', function (req, res) {
 
 		var titlesArray = [];
 
-		// Now, grab every everything with a class of "inner" with each "article" tag
+		// Now, grab every everything with a class of "inner" with each "video" tag
 		$('h3.yt-lockup-title').each(function (i, element) {
 
 			// Create an empty result object
 			var result = {};
 
-			// Collect the Article Title (contained in the "h2" of the "header" of "this")
+			// Collect the Video Title (contained in the "h2" of the "header" of "this")
 			result.title = $(element).children().attr("title");
 
-			// Collect the Article Link (contained within the "a" tag of the "h2" in the "header" of "this")
+			// Collect the Video Link (contained within the "a" tag of the "h2" in the "header" of "this")
 			result.link = "https://youtube.com" + $(element).children().attr("href");
 
 			result.duration = $(element).children("span").text();
@@ -86,22 +86,22 @@ router.get('/scrape', function (req, res) {
 			if (result.title !== "") {
 
 				// BUT also checking to make sure there are no duplicate videos...
-				// Due to async, moongoose will not save the articles fast enough for the duplicates within a scrape to be caught
+				// Due to async, moongoose will not save the videos fast enough for the duplicates within a scrape to be caught
 				if (titlesArray.indexOf(result.title) == -1) {
 
 					// Push the saved item to the titlesArray to prevent duplicates
 					titlesArray.push(result.title);
 
 					// Only add the entry to the database if is not already there
-					Article.count({
+					Video.count({
 						title: result.title
 					}, function (err, test) {
 
 						// If the count is 0, then the entry is unique and should be saved
 						if (test == 0) {
 
-							// Using the Article model, create a new entry (note that the "result" object has the exact same key-value pairs of the model)
-							var entry = new Article(result);
+							// Using the Video model, create a new entry (note that the "result" object has the exact same key-value pairs of the model)
+							var entry = new Video(result);
 
 							// Save the entry to MongoDB
 							entry.save(function (err, doc) {
@@ -136,8 +136,8 @@ router.get('/scrape', function (req, res) {
 
 		});
 
-		// Redirect to the Articles Page, done at the end of the request for proper scoping
-		res.redirect("/articles");
+		// Redirect to the Videos Page, done at the end of the request for proper scoping
+		res.redirect("/videos");
 
 	});
 
@@ -147,8 +147,8 @@ router.get('/scrape', function (req, res) {
 // Add a Comment Route - **API**
 router.post('/add/comment/:id', function (req, res) {
 
-	// Collect article id
-	var articleId = req.params.id;
+	// Collect video id
+	var videoId = req.params.id;
 
 	// Collect Author Name
 	var commentAuthor = req.body.name;
@@ -171,11 +171,11 @@ router.post('/add/comment/:id', function (req, res) {
 		if (err) {
 			console.log(err);
 		}
-		// Or, relate the comment to the article
+		// Or, relate the comment to the video
 		else {
-			// Push the new Comment to the list of comments in the article
-			Article.findOneAndUpdate({
-					'_id': articleId
+			// Push the new Comment to the list of comments in the video
+			Video.findOneAndUpdate({
+					'_id': videoId
 				}, {
 					$push: {
 						'comments': doc._id

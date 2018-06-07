@@ -7,16 +7,16 @@ var mongoose = require('mongoose');
 // Create a Schema Class
 var Schema = mongoose.Schema;
 
-// Create Article Schema
-var ArticleSchema = new Schema({
+// Create Video Schema
+var VideoSchema = new Schema({
 
-  // Title of Article
+  // Title of Video
   title: {
     type: String,
     required: true
   },
 
-  // Link to Article
+  // Link to Video
   link: {
     type: String,
     required: true
@@ -40,7 +40,7 @@ var ArticleSchema = new Schema({
     required: true
   },
 
-  // Date of article scrape (saving as a string to pretify it in Moment-JS)
+  // Date of video scrape (saving as a string to pretify it in Moment-JS)
   updated: {
     type: String,
     default: moment().format('MMMM Do YYYY, h:mm A')
@@ -54,8 +54,8 @@ var ArticleSchema = new Schema({
 
 });
 
-// Create the Article model with Mongoose
-var Article = mongoose.model('Article', ArticleSchema);
+// Create the Video model with Mongoose
+var Video = mongoose.model('Video', VideoSchema);
 
 // Export the Model
-module.exports = Article;
+module.exports = Video;
