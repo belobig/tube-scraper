@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Tab Title -->
+    <title>TubeScraper</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/tubeScraper.png">
+    <!-- View Port Size -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Materialize - Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <!-- Materialize - Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  </head>
+
+  <body>
+  
+    <!-- Fixed Nav Bar -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue darken-3 indieFlower">
+          <a href="/" class="brand-logo"><i class="material-icons">loop</i><img src="assets/images/tubeScraper.png" style="max-width: 50px;"> TubeScraper</a>
+          <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="https://www.youtube.com/" target="_new">YouTube</a></li>
+            <li><a href="https://github.com/belobig/tube-scraper" target="_new">Github Repo</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- For Mobile Nav Bar -->
+    <ul class="side-nav darken-3" id="mobile-demo">
+      <li><a href="https://www.youtube.com/" target="_new">YouTube</a></li>
+      <li><a href="https://github.com/belobig/tube-scraper" target="_new">Github Repo</a></li>
+    </ul>
+
+
+    <!-- Page Content -->
+    <main> 
+
+      <!-- Site Info Container -->
+      <div class="container">
+        <ul class="collection with-header">
+          <li class="collection-header blue lighten-2"><h4 class="indieFlower"><b>Welcome to TubeScraper!</b></h4></li>
+          <li class="collection-item">This app gives you a quick digest of videos scraped from YouTube and lets you comment on them.</li>
+          <li class="collection-item"><div>Click <i class="material-icons">loop</i> in the navbar to re-scrape data.</div></li>
+          <li class="collection-item"><div>Click <i class="material-icons">details</i> to view video details.</div></li>
+          <li class="collection-item"><div>Click <i class="material-icons">add_comment</i> to add a comment.</div></li>
+          <li class="collection-item"><div>Click <i class="material-icons">comment</i> to read comments.</div></li>
+        </ul>
+      </div>
+
+
+      <!-- Render All Articles -->
+      <div class="container">
+        {{{body}}}
+      </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="page-footer blue darken-3">
+      <div class="footer-copyright">
+        <div class="container">
+        © Author cannot claim copyright. All article data was web scraped from 
+        <a class="blue-text text-lighten-4" href="https://www.youtube.com/">www.youtube.com</a>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <!-- Link in jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize - Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <!-- Basic Page JavaScript for Repsonsiveness -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    
+  </body>
+
+</html>

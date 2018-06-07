@@ -1,0 +1,17 @@
+/*Sticky Footer*/
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  /*Add Background Texture*/
+  background-image: url('../images/pw_maze_white.png');
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.indieFlower {
+	font-family: 'Indie Flower', cursive;
+}
